@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="seriesImages">
+        <item>@drawable/Black_mirror</item>
+        <item>@drawable/Crown</item>
+        <item>@drawable/Glow</item>
+        <item>@drawable/Lucifer</item>
+        <item>@drawable/Stranger_things</item>
+        <item>@drawable/You</item>
+    </array>
+
+    <string-array name="seriesNames">
+        <item>Black Mirror</item>
+        <item>Crown</item>
+        <item>Glow</item>
+        <item>Lucifer</item>
+        <item>Stranger things</item>
+        <item>You</item>
+    </string-array>
+
+</resources>
