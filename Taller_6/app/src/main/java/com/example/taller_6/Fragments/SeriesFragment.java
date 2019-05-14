@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.taller_6.Adapters.SeriesAdapter;
 import com.example.taller_6.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -26,6 +27,7 @@ public class SeriesFragment extends Fragment {
     private FloatingActionButton fabSeries;
     private FragmentManager fragmentManager;
     private RecyclerView recyclerSeries;
+    private SeriesAdapter seriesAdapter;
 
     @Nullable
     @Override
@@ -46,6 +48,8 @@ public class SeriesFragment extends Fragment {
         RecyclerView.LayoutManager recycleManager = new LinearLayoutManager(getContext());
         recyclerSeries.setLayoutManager(recycleManager);
 
+        seriesAdapter = new SeriesAdapter(getContext());
+        recyclerSeries.setAdapter(seriesAdapter);
     }
 
     private void setUpFragmentManager() {

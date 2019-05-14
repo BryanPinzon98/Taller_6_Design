@@ -2,12 +2,12 @@
 <resources>
 
     <array name="seriesImages">
-        <item>@drawable/Black_mirror</item>
-        <item>@drawable/Crown</item>
-        <item>@drawable/Glow</item>
-        <item>@drawable/Lucifer</item>
-        <item>@drawable/Stranger_things</item>
-        <item>@drawable/You</item>
+        <item>@drawable/black_mirror</item>
+        <item>@drawable/crown</item>
+        <item>@drawable/glow</item>
+        <item>@drawable/lucifer</item>
+        <item>@drawable/stranger_things</item>
+        <item>@drawable/you</item>
     </array>
 
     <string-array name="seriesNames">
