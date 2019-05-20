@@ -14,11 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.taller_6.Adapters.SeriesAdapter;
 import com.example.taller_6.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 
 public class SeriesFragment extends Fragment {
 
@@ -60,7 +60,7 @@ public class SeriesFragment extends Fragment {
         fabSeries.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fragmentManager.beginTransaction().add(R.id.series_list, new SeriesFragment()).commit();
+                fragmentManager.beginTransaction().replace(R.id.series_list, new SeriesFragment()).commit();
             }
         });
     }

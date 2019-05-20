@@ -16,12 +16,20 @@ public class SeasonsFragment extends Fragment {
     private View context;
 
 
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        context = inflater.inflate(R.layout.seasons_item, container, false);
 
-        context = inflater.inflate(R.layout.seasons_layout, container, false);
+        setUpRecycler();
 
         return context;
     }
+
+    private void setUpRecycler() {
+
+
+    }
+
 }

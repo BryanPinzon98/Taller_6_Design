@@ -19,10 +19,10 @@ public class VentanaPrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+
         createBundle = savedInstanceState;
 
         setUpFragmentManager();
-        findMaterialElements();
         inflateLayout();
     }
 
@@ -36,11 +36,6 @@ public class VentanaPrincipalActivity extends AppCompatActivity {
             fragmentManager.beginTransaction().add(R.id.seasons_fragment, new SeasonsFragment()).commit();
         }
     }
-
-    private void findMaterialElements() {
-        FrameLayout tabletDetailFragment = findViewById(R.id.seasons_fragment);
-    }
-
 
     private void setUpFragmentManager() {
         fragmentManager = getSupportFragmentManager();
