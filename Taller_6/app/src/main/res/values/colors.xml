@@ -6,4 +6,5 @@
 
     <color name="transparente_gris">#969C9B9B</color>
     <color name="transparentFont">#4dffffff</color>
+    <color name="layoutBackground">#536465</color>
 </resources>

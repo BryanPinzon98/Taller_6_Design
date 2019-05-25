@@ -10,18 +10,20 @@ public class Serie implements Serializable {
 
     private int serieImage;
     private String serieName;
+    private int seasonsQuantity;
 
-    public Serie(int serieImage, String serieName) {
+    public Serie(int serieImage, String serieName, int seasonsQuantity) {
         this.serieImage = serieImage;
         this.serieName = serieName;
+        this.seasonsQuantity = seasonsQuantity;
     }
 
-    public static List<Serie> prepareSeries(TypedArray seriesImages, String[] seriesNames){
+    public static List<Serie> prepareSeries(TypedArray seriesImages, String[] seriesNames, int[] seriesSeasons){
 
-        List<Serie> series = new ArrayList<>(seriesImages.length());
+        List<Serie> series = new ArrayList<>(seriesNames.length);
 
         for(int i = 0; i < seriesImages.length(); i++){
-            Serie serie = new Serie(seriesImages.getResourceId(i, -1), seriesNames[i]);
+            Serie serie = new Serie(seriesImages.getResourceId(i, -1), seriesNames[i], seriesSeasons[i]);
             series.add(serie);
         }
 
@@ -42,5 +44,13 @@ public class Serie implements Serializable {
 
     public void setSerieName(String serieName) {
         this.serieName = serieName;
+    }
+
+    public int getSeasonsQuantity() {
+        return seasonsQuantity;
+    }
+
+    public void setSeasonsQuantity(int seasonsQuantity) {
+        this.seasonsQuantity = seasonsQuantity;
     }
 }

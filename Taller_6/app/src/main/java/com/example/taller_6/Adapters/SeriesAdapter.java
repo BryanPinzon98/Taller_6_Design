@@ -7,24 +7,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.taller_6.Entities.Serie;
 import com.example.taller_6.Fragments.SeasonsFragment;
 import com.example.taller_6.R;
+
 import java.util.List;
 
 
-public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.MyViewHolder>  {
+public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.MyViewHolder> {
 
     private Context context;
     private List<Serie> seriesList;
-    private FragmentManager fragmentManager;
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         public ImageView serieImage;
         public TextView serieName;
@@ -42,31 +44,18 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.MyViewHold
         this.context = context;
         this.seriesList = Serie.prepareSeries(
                 context.getResources().obtainTypedArray(R.array.seriesImages),
-                context.getResources().getStringArray(R.array.seriesNames)
+                context.getResources().getStringArray(R.array.seriesNames),
+                context.getResources().getIntArray(R.array.seriesSeasons)
         );
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.series_item, parent, false);
 
         return new MyViewHolder(view);
-    }
-
-    private void loadSerieDetail(int id, FragmentManager manager, Serie newSerie){
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("SERIE", newSerie);
-
-        SeasonsFragment seasonsFragment = new SeasonsFragment();
-        seasonsFragment.setArguments(bundle);
-
-        if(id == R.id.series_list){
-            manager.beginTransaction().replace(id, seasonsFragment).addToBackStack(null).commit();
-        }else{
-            manager.beginTransaction().add(id, seasonsFragment).commit();
-        }
     }
 
     @Override
@@ -80,9 +69,9 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.MyViewHold
 
                 FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();
 
-                if(context.getResources().getBoolean(R.bool.has_two_panes)){
+                if (context.getResources().getBoolean(R.bool.has_two_panes)) {
                     loadSerieDetail(R.id.seasons_fragment, manager, serie);
-                }else{
+                } else {
                     loadSerieDetail(R.id.series_list, manager, serie);
                 }
             }
@@ -90,6 +79,24 @@ public class SeriesAdapter extends RecyclerView.Adapter<SeriesAdapter.MyViewHold
 
         Glide.with(context).load(serie.getSerieImage()).into(holder.serieImage);
         holder.serieName.setText(serie.getSerieName());
+    }
+
+    private void loadSerieDetail(int id, FragmentManager manager, Serie newSerie) {
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("SERIE", newSerie);
+        bundle.putInt("LAYOUT", id);
+
+        SeasonsFragment seasonsFragment = new SeasonsFragment();
+        seasonsFragment.setArguments(bundle);
+
+        if (id == R.id.series_list) {
+            //Tablet view
+            manager.beginTransaction().replace(id, seasonsFragment).addToBackStack(null).commit();
+        } else {
+            //Mobile phone view
+            manager.beginTransaction().add(id, seasonsFragment).commit();
+        }
     }
 
     @Override

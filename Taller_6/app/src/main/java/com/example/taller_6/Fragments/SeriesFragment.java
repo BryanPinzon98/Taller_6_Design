@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.taller_6.Adapters.SeriesAdapter;
 import com.example.taller_6.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -23,11 +24,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 public class SeriesFragment extends Fragment {
 
     private View context;
+    private FragmentManager fragmentManager;
     private BottomAppBar babSeries;
     private FloatingActionButton fabSeries;
-    private FragmentManager fragmentManager;
     private RecyclerView recyclerSeries;
-    private SeriesAdapter seriesAdapter;
+
 
     @Nullable
     @Override
@@ -43,17 +44,18 @@ public class SeriesFragment extends Fragment {
         return context;
     }
 
-    private void setUpRecycler() {
-        recyclerSeries.setHasFixedSize(true);
-        RecyclerView.LayoutManager recycleManager = new LinearLayoutManager(getContext());
-        recyclerSeries.setLayoutManager(recycleManager);
-
-        seriesAdapter = new SeriesAdapter(getContext());
-        recyclerSeries.setAdapter(seriesAdapter);
-    }
-
     private void setUpFragmentManager() {
         fragmentManager = getFragmentManager();
+    }
+
+    private void findMaterialComponents() {
+        babSeries = context.findViewById(R.id.series_bab);
+        fabSeries = context.findViewById(R.id.fab_series);
+        recyclerSeries = context.findViewById(R.id.recyclerview_series);
+    }
+
+    private void setUpSupportActionBar() {
+        ((AppCompatActivity) getActivity()).setSupportActionBar(babSeries);
     }
 
     private void fabHandler() {
@@ -65,15 +67,17 @@ public class SeriesFragment extends Fragment {
         });
     }
 
-    private void setUpSupportActionBar() {
-        ((AppCompatActivity) getActivity()).setSupportActionBar(babSeries);
+    private void setUpRecycler() {
+        recyclerSeries.setHasFixedSize(true);
+
+        RecyclerView.LayoutManager recycleManager = new LinearLayoutManager(getContext());
+        recyclerSeries.setLayoutManager(recycleManager);
+
+        SeriesAdapter seriesAdapter = new SeriesAdapter(context.getContext());
+        recyclerSeries.setAdapter(seriesAdapter);
     }
 
-    private void findMaterialComponents() {
-        babSeries = context.findViewById(R.id.series_bab);
-        fabSeries = context.findViewById(R.id.fab_series);
-        recyclerSeries = context.findViewById(R.id.recyclerview_series);
-    }
+    //Additional methods
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
