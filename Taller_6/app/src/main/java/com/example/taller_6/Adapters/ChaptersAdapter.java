@@ -1,17 +1,17 @@
 package com.example.taller_6.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.taller_6.Entities.Chapter;
+import com.example.taller_6.Activities.ChapterDetailActivity;
 import com.example.taller_6.R;
 
 import java.util.List;
@@ -63,7 +63,8 @@ public class ChaptersAdapter extends RecyclerView.Adapter<ChaptersAdapter.MyView
             @Override
             public void onClick(View v) {
 
-                FragmentManager manager = ((AppCompatActivity) context).getSupportFragmentManager();
+                Intent intent = new Intent(context, ChapterDetailActivity.class);
+                context.startActivity(intent);
 
             }
         });
